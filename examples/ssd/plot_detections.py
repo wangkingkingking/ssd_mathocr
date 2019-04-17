@@ -81,7 +81,7 @@ if __name__ == "__main__":
             help = "A file which contains the LabelMap.")
     parser.add_argument("--visualize-threshold", default=0.01, type=float,
             help = "Display detections with score higher than the threshold.")
-    parser.add_argument("--save-dir", default="/lustre/home/lpwang/ssd/synme/draw_box_images",
+    parser.add_argument("--save-dir", default="/lustre/home/lpwang/data/synme/draw_results",
             help = "A directory which saves the image with detection results.")
     parser.add_argument("--display-classes", default=None,
             help = "If provided, only display specified class. Separate by ','")
@@ -109,11 +109,15 @@ if __name__ == "__main__":
         i = 0
         for line in f.readlines():
             i += 1
+#            if i > 10:
+ #               break
+            if i%1000 == 0:
+                print 'Finish {:06d} lines'.format(i)
             line_list = line.strip().split()
             if len(line_list) != 7:
                 print line
-            print len(line_list)
-            print i
+            #print len(line_list)
+            #print i
             img_name, label, score, xmin, ymin, xmax, ymax = line_list
             img_file = "{}/{}.jpg".format(img_dir, img_name)
             result = dict()
